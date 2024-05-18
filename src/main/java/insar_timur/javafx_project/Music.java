@@ -7,11 +7,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Main extends Application {
+public class Music extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("music-player.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        FXMLLoader fxmlLoader = new FXMLLoader(Music.class.getResource("music-player.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 480);
         stage.setTitle("Music Player");
         stage.setScene(scene);
         stage.show();
