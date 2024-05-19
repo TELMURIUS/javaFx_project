@@ -23,8 +23,8 @@
     -fx-background-radius: 50%;
     -fx-padding: 10;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 10, 0, 0, 0);
-    -fx-min-width: 60px;  /* Минимальная ширина для кнопок */
-    -fx-min-height: 60px; /* Минимальная высота для кнопок */
+    -fx-min-width: 60px;
+    -fx-min-height: 60px;
 }
 
 .control-button:hover {
