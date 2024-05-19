@@ -43,11 +43,9 @@ public class SongDetailController {
             albumCover.setImage(new Image(song.getPic()));
         }
 
-        String songPic = song.getPic();
-        String songFilePath = new File(song.getFile_path()).toURI().toString();
-
-        System.out.println("Song PIC: " + songPic);
-        Media media = new Media(songFilePath);
+        String songUri = new File(song.getFile_path()).toURI().toString();
+        System.out.println("Song URI: " + songUri);
+        Media media = new Media(songUri);
         mediaPlayer = new MediaPlayer(media);
         System.out.println("MediaPlayer initialized.");
         System.out.println(song.getFile_path());
@@ -75,10 +73,18 @@ public class SongDetailController {
     }
 
     @FXML
-    void goBack() throws IOException {
-        Stage stage = (Stage) albumCover.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("playlist-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 480);
-        stage.setScene(scene);
+    void goBack() {
+        try {
+            System.out.println("Back button clicked");
+            Stage stage = (Stage) albumCover.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/insar_timur/javafx_project/playlist-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 620, 780);
+            scene.getStylesheets().add(getClass().getResource("/insar_timur/javafx_project/style.css").toExternalForm());
+            stage.setScene(scene);
+            System.out.println("Scene switched to playlist view");
+        } catch (IOException e) {
+            System.out.println("Error loading FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }
