@@ -83,12 +83,13 @@ public class PlaylistController {
         try {
             System.out.println("Selected song: " + song.getTitle());
             Stage stage = (Stage) songListView.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("song-detail-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/insar_timur/javafx_project/song-detail-view.fxml"));
             Scene scene = new Scene(loader.load(), 320, 480);
             SongDetailController controller = loader.getController();
             System.out.println("Controller loaded, setting song details...");
             controller.setSongDetails(song);
             System.out.println("Song details set, switching scene...");
+            scene.getStylesheets().add(getClass().getResource("/insar_timur/javafx_project/style.css").toExternalForm());
             stage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();
@@ -96,10 +97,18 @@ public class PlaylistController {
     }
 
     @FXML
-    private void goBack() throws IOException {
-        Stage stage = (Stage) backButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("music-player.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 480);
-        stage.setScene(scene);
+    private void goBack() {
+        try {
+            System.out.println("Back button clicked");
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/insar_timur/javafx_project/music-player.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 620, 780);
+            scene.getStylesheets().add(getClass().getResource("/insar_timur/javafx_project/style.css").toExternalForm());
+            stage.setScene(scene);
+            System.out.println("Scene switched to music player");
+        } catch (IOException e) {
+            System.out.println("Error loading FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

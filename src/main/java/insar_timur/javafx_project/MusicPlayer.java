@@ -68,8 +68,8 @@ public class MusicPlayer {
     @FXML
     void goToPlaylist(MouseEvent event) throws IOException {
         Stage stage = (Stage) chooseMusic.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("playlist-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 480);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/insar_timur/javafx_project/playlist-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 620, 780);
         stage.setScene(scene);
     }
 

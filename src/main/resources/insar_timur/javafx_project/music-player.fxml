@@ -12,7 +12,6 @@
     </padding>
 
     <Label fx:id="chooseMusic" text="Choose your music"/>
-    <ImageView fx:id="albumCover" fitWidth="100" fitHeight="100"/>
     <Button text="Select Music" onMouseClicked="#chooseMusic"/>
     <Button text="Play" onMouseClicked="#play"/>
     <Button text="Pause" onMouseClicked="#pause"/>
