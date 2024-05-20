@@ -3,6 +3,7 @@ package insar_timur.javafx_project;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.Button;
@@ -84,11 +85,14 @@ public class PlaylistController {
             System.out.println("Selected song: " + song.getTitle());
             Stage stage = (Stage) songListView.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/insar_timur/javafx_project/song-detail-view.fxml"));
-            Scene scene = new Scene(loader.load(), 320, 480);
+            Parent root = loader.load();
+
             SongDetailController controller = loader.getController();
             System.out.println("Controller loaded, setting song details...");
+            controller.setPlaylist(songList);
             controller.setSongDetails(song);
             System.out.println("Song details set, switching scene...");
+            Scene scene = new Scene(root, 320, 480);
             scene.getStylesheets().add(getClass().getResource("/insar_timur/javafx_project/style.css").toExternalForm());
             stage.setScene(scene);
         } catch (IOException e) {
