@@ -17,7 +17,7 @@ public class DatabaseController {
     public void initialize() {
         try (Connection connection = DatabaseConnection.getConnection()) {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM your_table");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM songs");
 
             StringBuilder data = new StringBuilder();
             while (resultSet.next()) {

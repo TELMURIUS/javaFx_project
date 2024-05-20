@@ -1,111 +1,67 @@
 package insar_timur.javafx_project;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
-import javafx.util.Callback;
+import javafx.scene.Scene;
+import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.List;
 
 public class PlaylistController {
 
     @FXML
     private ListView<Song> songListView;
 
-    @FXML
-    private Button backButton;
-
-    private ObservableList<Song> songList = FXCollections.observableArrayList();
+    private List<Song> playlist;
 
     @FXML
     public void initialize() {
-        loadSongsFromDatabase();
-        songListView.setItems(songList);
-        songListView.setCellFactory(new Callback<ListView<Song>, ListCell<Song>>() {
-            @Override
-            public ListCell<Song> call(ListView<Song> param) {
-                return new ListCell<Song>() {
-                    @Override
-                    protected void updateItem(Song song, boolean empty) {
-                        super.updateItem(song, empty);
-                        if (empty || song == null) {
-                            setText(null);
-                        } else {
-                            setText(song.getTitle() + " - " + song.getArtist());
-                        }
-                    }
-                };
-            }
-        });
-
         songListView.setOnMouseClicked(event -> {
-            Song selectedSong = songListView.getSelectionModel().getSelectedItem();
-            if (selectedSong != null) {
-                playSelectedSong(selectedSong);
+            if (event.getClickCount() == 2) {
+                playSelectedSong();
             }
         });
     }
 
-    private void loadSongsFromDatabase() {
-        try (Connection connection = DatabaseConnection.getConnection()) {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM songs");
+    public void setPlaylist(List<Song> playlist) {
+        this.playlist = playlist;
+        songListView.getItems().setAll(playlist);
+    }
 
-            while (resultSet.next()) {
-                Song song = new Song(
-                        resultSet.getInt("id"),
-                        resultSet.getString("title"),
-                        resultSet.getString("artist"),
-                        resultSet.getString("album"),
-                        resultSet.getInt("release_year"),
-                        resultSet.getString("genre"),
-                        resultSet.getString("pic"),
-                        resultSet.getString("file_path")
-                );
-                songList.add(song);
+    private void playSelectedSong() {
+        Song selectedSong = songListView.getSelectionModel().getSelectedItem();
+        if (selectedSong != null) {
+            try {
+                System.out.println("Selected song: " + selectedSong.getTitle());
+                Stage stage = (Stage) songListView.getScene().getWindow();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/insar_timur/javafx_project/song-detail-view.fxml"));
+                Scene scene = new Scene(fxmlLoader.load(), 620, 780);
+                SongDetailController controller = fxmlLoader.getController();
+                controller.setPlaylist(playlist, playlist.indexOf(selectedSong));
+                scene.getStylesheets().add(getClass().getResource("/insar_timur/javafx_project/style.css").toExternalForm());
+                stage.setScene(scene);
+                System.out.println("Scene switched to song detail view");
+            } catch (IOException e) {
+                System.out.println("Error loading FXML: " + e.getMessage());
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 
-    private void playSelectedSong(Song song) {
-        try {
-            System.out.println("Selected song: " + song.getTitle());
-            Stage stage = (Stage) songListView.getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/insar_timur/javafx_project/song-detail-view.fxml"));
-            Scene scene = new Scene(loader.load(), 320, 480);
-            SongDetailController controller = loader.getController();
-            System.out.println("Controller loaded, setting song details...");
-            controller.setSongDetails(song);
-            System.out.println("Song details set, switching scene...");
-            scene.getStylesheets().add(getClass().getResource("/insar_timur/javafx_project/style.css").toExternalForm());
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @FXML
-    private void goBack() {
+    void goBack() {
         try {
             System.out.println("Back button clicked");
-            Stage stage = (Stage) backButton.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/insar_timur/javafx_project/music-player.fxml"));
+            Stage stage = (Stage) songListView.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/insar_timur/javafx_project/main-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 620, 780);
             scene.getStylesheets().add(getClass().getResource("/insar_timur/javafx_project/style.css").toExternalForm());
             stage.setScene(scene);
-            System.out.println("Scene switched to music player");
+            System.out.println("Scene switched to main view");
         } catch (IOException e) {
             System.out.println("Error loading FXML: " + e.getMessage());
             e.printStackTrace();

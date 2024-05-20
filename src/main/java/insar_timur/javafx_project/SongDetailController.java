@@ -1,17 +1,20 @@
 package insar_timur.javafx_project;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.fxml.FXMLLoader;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class SongDetailController {
 
@@ -30,7 +33,14 @@ public class SongDetailController {
     @FXML
     private Label songGenre;
 
+    @FXML
+    private Button playPauseButton;
+
     private MediaPlayer mediaPlayer;
+    private boolean isPlaying = false;
+
+    private List<Song> playlist;
+    private int currentIndex;
 
     public void setSongDetails(Song song) {
         System.out.println("Setting song details for: " + song.getTitle());
@@ -51,24 +61,45 @@ public class SongDetailController {
         System.out.println(song.getFile_path());
     }
 
+    public void setPlaylist(List<Song> playlist, int currentIndex) {
+        this.playlist = playlist;
+        this.currentIndex = currentIndex;
+        setSongDetails(playlist.get(currentIndex));
+    }
+
     @FXML
-    void play() {
+    void playPause() {
+        toggle();
+    }
+
+    @FXML
+    private void toggle() {
         if (mediaPlayer != null) {
-            mediaPlayer.play();
+            if (isPlaying) {
+                mediaPlayer.pause();
+                playPauseButton.setText("⏯");
+            } else {
+                mediaPlayer.play();
+                playPauseButton.setText("⏸");
+            }
+            isPlaying = !isPlaying;
         }
     }
 
     @FXML
-    void pause() {
-        if (mediaPlayer != null) {
-            mediaPlayer.pause();
+    void next() {
+        if (playlist != null && currentIndex > 0) {
+            setSongDetails(playlist.get(currentIndex++));
+            playPause();
         }
     }
 
+
     @FXML
-    void stop() {
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
+    void previous() {
+        if (playlist != null && currentIndex > 0) {
+            setSongDetails(playlist.get(--currentIndex));
+            playPause();
         }
     }
 
@@ -84,6 +115,20 @@ public class SongDetailController {
             System.out.println("Scene switched to playlist view");
         } catch (IOException e) {
             System.out.println("Error loading FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void info() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/insar_timur/javafx_project/info-window.fxml"));
+            VBox root = loader.load();
+            Stage infoStage = new Stage();
+            infoStage.setTitle("Song Info");
+            infoStage.setScene(new Scene(root));
+            infoStage.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
