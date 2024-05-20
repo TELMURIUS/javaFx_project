@@ -11,7 +11,9 @@ target/
 *.iws
 *.iml
 *.ipr
-pom.xml
+
+### Include pom.xml ###
+!pom.xml
 
 ### Eclipse ###
 .apt_generated
@@ -37,5 +39,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
 # Project exclude paths
 /out/
