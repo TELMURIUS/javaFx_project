@@ -22,9 +22,16 @@
     </VBox>
 
     <HBox alignment="CENTER" spacing="10.0">
+        <Button text="⏮" onMouseClicked="#playPreviousSong" styleClass="control-button"/>
         <Button text="⏯" onMouseClicked="#play" styleClass="control-button"/>
         <Button text="⏸" onMouseClicked="#pause" styleClass="control-button"/>
         <Button text="⏹" onMouseClicked="#stop" styleClass="control-button"/>
+        <Button text="⏭" onMouseClicked="#playNextSong" styleClass="control-button"/>
+    </HBox>
+
+    <HBox alignment="CENTER" spacing="10.0">
+        <Button text="Loop" onMouseClicked="#toggleLooping" styleClass="control-button"/>
+        <Button text="Shuffle" onMouseClicked="#toggleShuffling" styleClass="control-button"/>
     </HBox>
 
     <Button text="Back" onMouseClicked="#goBack" styleClass="back-button"/>
