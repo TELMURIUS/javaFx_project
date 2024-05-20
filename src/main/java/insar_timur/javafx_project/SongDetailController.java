@@ -12,6 +12,8 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Random;
 
 public class SongDetailController {
 
@@ -31,8 +33,18 @@ public class SongDetailController {
     private Label songGenre;
 
     private MediaPlayer mediaPlayer;
+    private List<Song> playlist;
+    private int currentIndex = 0;
+    private boolean isLooping = false;
+    private boolean isShuffling = false;
+    private Random random = new Random();
+
+    public void setPlaylist(List<Song> playlist) {
+        this.playlist = playlist;
+    }
 
     public void setSongDetails(Song song) {
+        currentIndex = playlist.indexOf(song);
         System.out.println("Setting song details for: " + song.getTitle());
         songTitle.setText(song.getTitle());
         songArtist.setText(song.getArtist());
@@ -46,9 +58,21 @@ public class SongDetailController {
         String songUri = new File(song.getFile_path()).toURI().toString();
         System.out.println("Song URI: " + songUri);
         Media media = new Media(songUri);
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+        }
         mediaPlayer = new MediaPlayer(media);
         System.out.println("MediaPlayer initialized.");
         System.out.println(song.getFile_path());
+
+        mediaPlayer.setOnEndOfMedia(() -> {
+            if (isLooping) {
+                mediaPlayer.seek(mediaPlayer.getStartTime());
+                mediaPlayer.play();
+            } else {
+                playNextSong();
+            }
+        });
     }
 
     @FXML
@@ -70,6 +94,44 @@ public class SongDetailController {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
         }
+    }
+
+    @FXML
+    void playNextSong() {
+        if (isShuffling) {
+            currentIndex = random.nextInt(playlist.size());
+        } else {
+            currentIndex = (currentIndex + 1) % playlist.size();
+        }
+        playCurrentSong();
+    }
+
+    @FXML
+    void playPreviousSong() {
+        if (isShuffling) {
+            currentIndex = random.nextInt(playlist.size());
+        } else {
+            currentIndex = (currentIndex - 1 + playlist.size()) % playlist.size();
+        }
+        playCurrentSong();
+    }
+
+    @FXML
+    void toggleLooping() {
+        isLooping = !isLooping;
+        System.out.println("Looping is now " + (isLooping ? "enabled" : "disabled"));
+    }
+
+    @FXML
+    void toggleShuffling() {
+        isShuffling = !isShuffling;
+        System.out.println("Shuffling is now " + (isShuffling ? "enabled" : "disabled"));
+    }
+
+    private void playCurrentSong() {
+        Song currentSong = playlist.get(currentIndex);
+        setSongDetails(currentSong);
+        play();
     }
 
     @FXML
