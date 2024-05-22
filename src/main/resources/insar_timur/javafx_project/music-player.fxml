@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="insar_timur.javafx_project.MusicPlayer">
+<VBox alignment="CENTER" maxWidth="-Infinity" prefHeight="333.0" prefWidth="449.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="insar_timur.javafx_project.MusicPlayer">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
+    <HBox alignment="CENTER" spacing="10">
+        <padding>
+            <Insets bottom="10" left="10" right="10" top="10" />
+        </padding>
+        <Label fx:id="chooseMusic" />
+        <Button onMouseClicked="#chooseMusic" prefHeight="26.0" prefWidth="91.0" text="Select Music" />
+        <Button alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#goToPlaylist" prefHeight="26.0" prefWidth="0.0" text="Go to Playlist" />
+    </HBox>
+   <HBox alignment="CENTER" prefHeight="47.0" prefWidth="410.0" spacing="20.0">
+      <children>
+          <Button onMouseClicked="#play" text="⏸" />
+          <Button onMouseClicked="#pause" text="▶" />
+          <Button onMouseClicked="#stop" text="⏹" />
+      </children>
+      <VBox.margin>
+         <Insets />
+      </VBox.margin>
+   </HBox>
+   <HBox alignment="CENTER" prefHeight="39.0" prefWidth="410.0" spacing="20.0">
+      <children>
+          <Button onMouseClicked="#goToPlaylist" text="Go to Playlist" />
+          <Button alignment="CENTER" onMouseClicked="#openAddForm" text="Add" />
+      </children>
+   </HBox>
 
-    <Label fx:id="chooseMusic" text="Choose your music"/>
-    <Button text="Select Music" onMouseClicked="#chooseMusic"/>
-    <Button text="Play" onMouseClicked="#play"/>
-    <Button text="Pause" onMouseClicked="#pause"/>
-    <Button text="Stop" onMouseClicked="#stop"/>
-    <Button text="Go to Playlist" onMouseClicked="#goToPlaylist"/>
 </VBox>

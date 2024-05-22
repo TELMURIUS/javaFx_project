@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="insar_timur.javafx_project.AddSongFormController">
+    <Label text="Add Song Details" />
+    <TextField fx:id="titleField" promptText="Title" />
+    <TextField fx:id="artistField" promptText="Artist" />
+    <TextField fx:id="albumField" promptText="Album" />
+    <TextField fx:id="yearField" promptText="Release Year" />
+    <TextField fx:id="genreField" promptText="Genre" />
+    <TextField fx:id="picField" promptText="Picture URL" />
+    <Button text="Save" onAction="#saveSong" />
+</VBox>
