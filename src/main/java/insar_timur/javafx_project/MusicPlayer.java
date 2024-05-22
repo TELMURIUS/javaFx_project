@@ -78,7 +78,7 @@ public class MusicPlayer {
     @FXML
     void openAddForm(MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/insar_timur/javafx_project/add-song-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 300, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 400, 500);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);

@@ -92,7 +92,7 @@ public class PlaylistController {
             controller.setPlaylist(songList);
             controller.setSongDetails(song);
             System.out.println("Song details set, switching scene...");
-            Scene scene = new Scene(root, 320, 480);
+            Scene scene = new Scene(root, 400, 500);
             scene.getStylesheets().add(getClass().getResource("/insar_timur/javafx_project/style.css").toExternalForm());
             stage.setScene(scene);
         } catch (IOException e) {
