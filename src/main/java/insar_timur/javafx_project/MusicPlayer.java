@@ -16,6 +16,11 @@ import java.io.File;
 import java.io.IOException;
 
 public class MusicPlayer {
+    private DatabaseController.SongDao songDao; // Объект для взаимодействия с базой данных
+
+    public void setSongDao(DatabaseController.SongDao songDao) {
+        this.songDao = songDao;
+    }
 
     @FXML
     private Label chooseMusic;
@@ -31,11 +36,14 @@ public class MusicPlayer {
 
     private MediaPlayer mediaPlayer;
 
-    public MusicPlayer() {
+    @FXML
+    private void goBackPlayer(MouseEvent event) {
+        // Реализуйте переход назад
+        System.out.println("Back button clicked");
     }
 
     @FXML
-    void chooseMusic(MouseEvent event) {
+    private void chooseMusic(MouseEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select your music");
         File file = fileChooser.showOpenDialog(null);
@@ -45,31 +53,31 @@ public class MusicPlayer {
     }
 
     @FXML
-    void pause(MouseEvent event) {
+    private void pause(MouseEvent event) {
         if (mediaPlayer != null) {
             mediaPlayer.pause();
         }
     }
 
     @FXML
-    void play(MouseEvent event) {
+    private void play(MouseEvent event) {
         if (mediaPlayer != null) {
             mediaPlayer.play();
         }
     }
 
     @FXML
-    void stop(MouseEvent event) {
+    private void stop(MouseEvent event) {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
         }
     }
 
     @FXML
-    void goToPlaylist(MouseEvent event) throws IOException {
+    public void goToPlaylist(MouseEvent event) throws IOException {
         Stage stage = (Stage) chooseMusic.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/insar_timur/javafx_project/playlist-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 620, 780);
+        Scene scene = new Scene(fxmlLoader.load(), 500, 600);
         stage.setScene(scene);
     }
 
@@ -89,4 +97,5 @@ public class MusicPlayer {
             mediaPlayer.play();
         });
     }
+
 }

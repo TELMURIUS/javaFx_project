@@ -4,7 +4,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="10.0" xmlns:fx="http://javafx.com/fxml" fx:controller="insar_timur.javafx_project.PlaylistController">
-    <ListView fx:id="songListView" prefWidth="500" prefHeight="400"/>
-    <Button text="Back" fx:id="backButton" onMouseClicked="#goBack"/>
+<VBox alignment="CENTER" spacing="10.0" style="-fx-background-color: black;"  xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="insar_timur.javafx_project.PlaylistController">
+    <ListView fx:id="songListView" prefHeight="550" prefWidth="500" style="-fx-background-color: black"  />
+    <Button fx:id="backButton" onMouseClicked="#goBack" styleClass="back-button" text="Back" />
 </VBox>

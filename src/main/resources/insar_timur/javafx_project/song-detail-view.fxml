@@ -12,6 +12,15 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
+
+    <HBox alignment="CENTER" spacing="10.0">
+        <VBox alignment="TOP_LEFT" spacing="10">
+            <Button text="⬅" onMouseClicked="#goBack" styleClass="back-button"/>
+        </VBox>
+        <VBox alignment="TOP_RIGHT" spacing="10">
+            <Button text="ℹ" onMouseClicked="#goToInfo" styleClass="info-button"/>
+        </VBox>
+    </HBox>
     <ImageView fx:id="albumCover" fitWidth="200" fitHeight="200"/>
 
     <VBox alignment="CENTER" spacing="10.0">
@@ -23,9 +32,7 @@
 
     <HBox alignment="CENTER" spacing="10.0">
         <Button text="⏮" onMouseClicked="#playPreviousSong" styleClass="control-button"/>
-        <Button text="⏯" onMouseClicked="#play" styleClass="control-button"/>
-        <Button text="⏸" onMouseClicked="#pause" styleClass="control-button"/>
-        <Button text="⏹" onMouseClicked="#stop" styleClass="control-button"/>
+        <Button fx:id="playPauseButton" text="▶" onMouseClicked="#togglePlayPause" styleClass="control-button"/>
         <Button text="⏭" onMouseClicked="#playNextSong" styleClass="control-button"/>
     </HBox>
 
@@ -34,5 +41,5 @@
         <Button text="Shuffle" onMouseClicked="#toggleShuffling" styleClass="control-button"/>
     </HBox>
 
-    <Button text="Back" onMouseClicked="#goBack" styleClass="back-button"/>
+
 </VBox>

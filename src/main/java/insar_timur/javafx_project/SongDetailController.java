@@ -1,14 +1,15 @@
 package insar_timur.javafx_project;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.fxml.FXMLLoader;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,6 +32,9 @@ public class SongDetailController {
 
     @FXML
     private Label songGenre;
+
+    @FXML
+    private Button playPauseButton;
 
     private MediaPlayer mediaPlayer;
     private List<Song> playlist;
@@ -140,10 +144,51 @@ public class SongDetailController {
             System.out.println("Back button clicked");
             Stage stage = (Stage) albumCover.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/insar_timur/javafx_project/playlist-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 620, 780);
+            Scene scene = new Scene(fxmlLoader.load(), 500, 600);
             scene.getStylesheets().add(getClass().getResource("/insar_timur/javafx_project/style.css").toExternalForm());
             stage.setScene(scene);
             System.out.println("Scene switched to playlist view");
+        } catch (IOException e) {
+            System.out.println("Error loading FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void togglePlayPause() {
+        if (mediaPlayer == null) {
+            return;
+        }
+
+        if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+            mediaPlayer.pause();
+        } else {
+            mediaPlayer.play();
+        }
+
+        updatePlayPauseButton();
+    }
+
+    private void updatePlayPauseButton() {
+        // Update the button text or icon based on the media player's status
+        if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+            // Set pause icon or text
+            playPauseButton.setText("⏸");
+        } else {
+            // Set play icon or text
+            playPauseButton.setText("▶");
+        }
+    }
+    @FXML
+    private void goToInfo() {
+        try {
+            System.out.println("Info button clicked");
+            Stage stage = (Stage) albumCover.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/insar_timur/javafx_project/info-page.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 500, 600);
+            scene.getStylesheets().add(getClass().getResource("/insar_timur/javafx_project/style.css").toExternalForm());
+            stage.setScene(scene);
+            System.out.println("Scene switched to info view");
         } catch (IOException e) {
             System.out.println("Error loading FXML: " + e.getMessage());
             e.printStackTrace();
