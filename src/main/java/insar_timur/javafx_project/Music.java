@@ -44,7 +44,6 @@ public class Music extends Application {
 
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(5), event -> {
-                    // После 5 секунд переходим к основной странице
                     mediaPlayer.stop();
                     loadMainPage(primaryStage);
                 })
