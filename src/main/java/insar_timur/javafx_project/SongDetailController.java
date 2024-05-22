@@ -1,6 +1,7 @@
 package insar_timur.javafx_project;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,9 +31,18 @@ public class SongDetailController {
     @FXML
     private Label songGenre;
 
+    @FXML
+    private Button playPauseButton;
+
     private MediaPlayer mediaPlayer;
+    private boolean isPlaying = false;
+    private Song currentSong;
+
+
+
 
     public void setSongDetails(Song song) {
+        currentSong = song;
         System.out.println("Setting song details for: " + song.getTitle());
         songTitle.setText(song.getTitle());
         songArtist.setText(song.getArtist());
@@ -52,28 +62,44 @@ public class SongDetailController {
     }
 
     @FXML
-    void play() {
-        if (mediaPlayer != null) {
+    private void togglePlayPause() {
+        if (mediaPlayer == null) {
+            return;
+        }
+
+        if (isPlaying) {
+            mediaPlayer.pause();
+        } else {
             mediaPlayer.play();
         }
+
+        isPlaying = !isPlaying;
+        updatePlayPauseButton();
     }
 
     @FXML
-    void pause() {
-        if (mediaPlayer != null) {
-            mediaPlayer.pause();
-        }
-    }
-
-    @FXML
-    void stop() {
+    private void stop() {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
         }
+        isPlaying = false;
+        updatePlayPauseButton();
+    }
+
+    private int currentSongIndex; // Объявляем переменную для отслеживания текущего индекса выбранной песни
+
+
+
+    private void updatePlayPauseButton() {
+        if (isPlaying) {
+            playPauseButton.setText("⏸");
+        } else {
+            playPauseButton.setText("▶");
+        }
     }
 
     @FXML
-    void goBack() {
+    private void goBack() {
         try {
             System.out.println("Back button clicked");
             Stage stage = (Stage) albumCover.getScene().getWindow();
@@ -87,4 +113,38 @@ public class SongDetailController {
             e.printStackTrace();
         }
     }
+
+
+    @FXML
+    private void goBackPlaylist() {
+        try {
+            System.out.println("Back button clicked");
+            Stage stage = (Stage) albumCover.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("javaFx_project//src//main//resources//insar_timur//javafx_project//song-detail-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 620, 780);
+            scene.getStylesheets().add(getClass().getResource("/insar_timur/javafx_project/style.css").toExternalForm());
+            stage.setScene(scene);
+            System.out.println("Scene switched to playlist view");
+        } catch (IOException e) {
+            System.out.println("Error loading FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void goToInfo() {
+        try {
+            System.out.println("Info button clicked");
+            Stage stage = (Stage) albumCover.getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/insar_timur/javafx_project/info-page.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 620, 780);
+            scene.getStylesheets().add(getClass().getResource("/insar_timur/javafx_project/style.css").toExternalForm());
+            stage.setScene(scene);
+            System.out.println("Scene switched to info view");
+        } catch (IOException e) {
+            System.out.println("Error loading FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 }
+

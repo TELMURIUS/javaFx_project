@@ -12,20 +12,23 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
+    <HBox alignment="TOP_CENTER" spacing="20.0">
+        <Button fx:id="backButton" text="⬅" onMouseClicked="#goBack" styleClass="back-button"/>
+        <HBox HBox.hgrow="ALWAYS"/>
+        <Button fx:id="infoButton" text="ℹ" onMouseClicked="#goToInfo" styleClass="info-button"/>
+    </HBox>
+
     <ImageView fx:id="albumCover" fitWidth="200" fitHeight="200"/>
 
     <VBox alignment="CENTER" spacing="10.0">
-        <Label fx:id="songTitle" text="Song Title" styleClass="song-title"/>
-        <Label fx:id="songArtist" text="Artist" styleClass="song-artist"/>
-        <Label fx:id="songAlbum" text="Album" styleClass="song-album"/>
-        <Label fx:id="songGenre" text="Genre" styleClass="song-genre"/>
+        <Label fx:id="songTitle" text="Song Title" styleClass="song-title" style="-fx-font-size: 22px;"/>
+        <Label fx:id="songArtist" text="Artist" styleClass="song-artist" style="-fx-font-size: 14px;"/>
     </VBox>
 
     <HBox alignment="CENTER" spacing="10.0">
-        <Button text="⏯" onMouseClicked="#play" styleClass="control-button"/>
-        <Button text="⏸" onMouseClicked="#pause" styleClass="control-button"/>
-        <Button text="⏹" onMouseClicked="#stop" styleClass="control-button"/>
+
+        <Button fx:id="playPauseButton" text="▶" onMouseClicked="#togglePlayPause" styleClass="control-button"/>
+
     </HBox>
 
-    <Button text="Back" onMouseClicked="#goBack" styleClass="back-button"/>
 </VBox>

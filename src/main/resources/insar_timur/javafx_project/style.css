@@ -32,14 +32,27 @@
 }
 
 .back-button {
-    -fx-background-color: #3E3E3E;
+    -fx-background-color: green;
     -fx-text-fill: white;
-    -fx-font-size: 16px;
+    -fx-font-size: 20px;
     -fx-background-radius: 30;
     -fx-padding: 10 20;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 10, 0, 0, 0);
 }
 
 .back-button:hover {
+    -fx-background-color: #5E5E5E;
+}
+
+.info-button {
+    -fx-background-color: green;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-background-radius: 30;
+    -fx-padding: 10 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 10, 0, 0, 0);
+}
+
+.info-button:hover {
     -fx-background-color: #5E5E5E;
 }

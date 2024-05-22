@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+    <HBox alignment="TOP_CENTER" spacing="20.0">
+        <Button fx:id="backButton" text="⬅" onMouseClicked="#goBackPlayer" styleClass="back-button"/>
+    </HBox>
+
+    <Label fx:id="songTitle" text="Song Title" styleClass="song-title"/>
+    <Label fx:id="songArtist" text="Artist" styleClass="song-artist"/>
+    <Label fx:id="songAlbum" text="Album" styleClass="song-album"/>
+    <Label fx:id="songGenre" text="Genre" styleClass="song-genre"/>
+</VBox>

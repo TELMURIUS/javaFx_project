@@ -27,6 +27,7 @@ public class PlaylistController {
 
     private ObservableList<Song> songList = FXCollections.observableArrayList();
 
+
     @FXML
     public void initialize() {
         loadSongsFromDatabase();
