@@ -34,7 +34,7 @@ public class Music extends Application {
         StackPane root = new StackPane(vbox);
         root.setStyle("-fx-background-color: black;");
 
-        Scene scene = new Scene(root, 500, 600);
+        Scene scene = new Scene(root, 600, 700);
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("Music Player");
@@ -43,7 +43,7 @@ public class Music extends Application {
         mediaPlayer.play();
 
         Timeline timeline = new Timeline(
-                new KeyFrame(Duration.seconds(5), event -> {
+                new KeyFrame(Duration.seconds(2), event -> {
                     mediaPlayer.stop();
                     loadMainPage(primaryStage);
                 })
@@ -54,7 +54,7 @@ public class Music extends Application {
     private void loadMainPage(Stage primaryStage) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/insar_timur/javafx_project/music-player.fxml"));
-            Scene mainScene = new Scene(fxmlLoader.load(), 400, 500);
+            Scene mainScene = new Scene(fxmlLoader.load(), 600, 700);
             mainScene.getStylesheets().add(getClass().getResource("/insar_timur/javafx_project/style.css").toExternalForm());
             primaryStage.setScene(mainScene);
         } catch (Exception e) {

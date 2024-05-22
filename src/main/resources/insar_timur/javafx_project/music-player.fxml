@@ -29,7 +29,6 @@
    </HBox>
    <HBox alignment="CENTER" prefHeight="39.0" prefWidth="410.0" spacing="20.0">
       <children>
-          <Button onMouseClicked="#goToPlaylist" text="Go to Playlist" />
           <Button alignment="CENTER" onMouseClicked="#openAddForm" text="Add" />
       </children>
    </HBox>
