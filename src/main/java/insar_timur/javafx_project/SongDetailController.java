@@ -1,6 +1,7 @@
 package insar_timur.javafx_project;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -107,6 +108,8 @@ public class SongDetailController {
     }
 
     @FXML
+    private Button playPauseButton;
+    @FXML
     void playPreviousSong() {
         if (isShuffling) {
             currentIndex = random.nextInt(playlist.size());
@@ -165,6 +168,27 @@ public class SongDetailController {
         } catch (IOException e) {
             System.out.println("Error loading FXML: " + e.getMessage());
             e.printStackTrace();
+        }
+    }
+    @FXML
+    private void togglePlayPause() {
+        if (mediaPlayer == null) {
+            return;
+        }
+
+        if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+            mediaPlayer.pause();
+        } else {
+            mediaPlayer.play();
+        }
+
+        updatePlayPauseButton();
+    }
+    private void updatePlayPauseButton() {
+        if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+            playPauseButton.setText("⏸");
+        } else {
+            playPauseButton.setText("▶");
         }
     }
 }
