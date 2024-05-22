@@ -1,38 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml" fx:controller="insar_timur.javafx_project.SongDetailController">
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="insar_timur.javafx_project.SongDetailController">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-    <ImageView fx:id="albumCover" fitWidth="200" fitHeight="200"/>
+    <ImageView fx:id="albumCover" fitHeight="200" fitWidth="200" />
 
     <VBox alignment="CENTER" spacing="10.0">
-        <Label fx:id="songTitle" text="Song Title" styleClass="song-title"/>
-        <Label fx:id="songArtist" text="Artist" styleClass="song-artist"/>
-        <Label fx:id="songAlbum" text="Album" styleClass="song-album"/>
-        <Label fx:id="songGenre" text="Genre" styleClass="song-genre"/>
+        <Label fx:id="songTitle" styleClass="song-title" text="Song Title" />
+        <Label fx:id="songArtist" styleClass="song-artist" text="Artist" />
+        <Label fx:id="songAlbum" styleClass="song-album" text="Album" />
+        <Label fx:id="songGenre" styleClass="song-genre" text="Genre" />
     </VBox>
 
     <HBox alignment="CENTER" spacing="10.0">
-        <Button text="⏮" onMouseClicked="#playPreviousSong" styleClass="control-button"/>
-        <Button text="⏯" onMouseClicked="#play" styleClass="control-button"/>
-        <Button text="▶" onMouseClicked="#pause" styleClass="control-button"/>
-        <Button text="⏹" onMouseClicked="#stop" styleClass="control-button"/>
-        <Button text="⏭" onMouseClicked="#playNextSong" styleClass="control-button"/>
+        <Button onMouseClicked="#playPreviousSong" styleClass="control-button" text="⏮" />
+        <Button onMouseClicked="#play" styleClass="control-button" text="⏯" />
+        <Button onMouseClicked="#pause" styleClass="control-button" text="▶" />
+        <Button onMouseClicked="#stop" styleClass="control-button" text="⏹" />
+        <Button onMouseClicked="#playNextSong" styleClass="control-button" text="⏭" />
     </HBox>
 
     <HBox alignment="CENTER" spacing="10.0">
-        <Button text="🔁" onMouseClicked="#toggleLooping" styleClass="control-button"/>
-        <Button text="🔀" onMouseClicked="#toggleShuffling" styleClass="control-button"/>
+        <Button onMouseClicked="#toggleLooping" styleClass="control-button" text="🔁" />
+        <Button onMouseClicked="#toggleShuffling" styleClass="control-button" text="🔀" />
     </HBox>
-
-    <Button text="Back" onMouseClicked="#goBack" styleClass="back-button"/>
+   <HBox alignment="CENTER" prefHeight="0.0" prefWidth="200.0" spacing="20.0">
+      <children>
+           <Button onAction="#showSongDescription" text="Song Description" />
+          <Button alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#goBack" styleClass="back-button" text="Back" />
+      </children>
+   </HBox>
+    <HBox alignment="TOP_RIGHT" spacing="10.0" />
 </VBox>
