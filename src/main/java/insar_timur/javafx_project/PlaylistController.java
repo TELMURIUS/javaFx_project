@@ -106,7 +106,7 @@ public class PlaylistController {
             System.out.println("Back button clicked");
             Stage stage = (Stage) backButton.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/insar_timur/javafx_project/music-player.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 620, 780);
+            Scene scene = new Scene(fxmlLoader.load(), 400, 400);
             scene.getStylesheets().add(getClass().getResource("/insar_timur/javafx_project/style.css").toExternalForm());
             stage.setScene(scene);
             System.out.println("Scene switched to music player");
