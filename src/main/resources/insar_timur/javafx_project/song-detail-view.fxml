@@ -15,8 +15,6 @@
     <VBox alignment="CENTER" spacing="10.0">
         <Label fx:id="songTitle" styleClass="song-title" text="Song Title" />
         <Label fx:id="songArtist" styleClass="song-artist" text="Artist" />
-        <Label fx:id="songAlbum" styleClass="song-album" text="Album" />
-        <Label fx:id="songGenre" styleClass="song-genre" text="Genre" />
     </VBox>
 
     <HBox alignment="CENTER" spacing="10.0">

@@ -49,8 +49,6 @@ public class SongDetailController {
         System.out.println("Setting song details for: " + song.getTitle());
         songTitle.setText(song.getTitle());
         songArtist.setText(song.getArtist());
-        songAlbum.setText(song.getAlbum());
-        songGenre.setText(song.getGenre());
         if (song.getPic() != null) {
             System.out.println("Setting album cover...");
             albumCover.setImage(new Image(song.getPic()));

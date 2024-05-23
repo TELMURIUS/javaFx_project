@@ -68,7 +68,7 @@ public class PlaylistController {
                         resultSet.getString("title"),
                         resultSet.getString("artist"),
                         resultSet.getString("album"),
-                        resultSet.getInt("release_year"),
+                        resultSet.getString("release_year"),
                         resultSet.getString("genre"),
                         resultSet.getString("pic"),
                         resultSet.getString("file_path")

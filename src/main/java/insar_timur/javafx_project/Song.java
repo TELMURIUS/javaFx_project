@@ -5,7 +5,7 @@ public class Song {
     private String title;
     private String artist;
     private String album;
-    private int releaseYear;
+    private String releaseYear;
     private String genre;
     private String pic;
     private String file_path;
@@ -13,7 +13,7 @@ public class Song {
     public Song() {
     }
 
-    public Song(int id, String title, String artist, String album, int releaseYear, String genre, String pic, String file_path) {
+    public Song(int id, String title, String artist, String album, String releaseYear, String genre, String pic, String file_path) {
         this.id = id;
         this.title = title;
         this.artist = artist;
@@ -56,11 +56,11 @@ public class Song {
         this.album = album;
     }
 
-    public int getReleaseYear() {
+    public String getReleaseYear() {
         return releaseYear;
     }
 
-    public void setReleaseYear(int releaseYear) {
+    public void setReleaseYear(String releaseYear) {
         this.releaseYear = releaseYear;
     }
 

@@ -17,5 +17,6 @@
         <Label fx:id="songArtist" text="Artist" styleClass="song-artist"/>
         <Label fx:id="songAlbum" text="Album" styleClass="song-album"/>
         <Label fx:id="songGenre" text="Genre" styleClass="song-genre"/>
+        <Label fx:id="songReleaseYear" text="Release Year" styleClass="song-release-year"/>
     </VBox>
 </VBox>

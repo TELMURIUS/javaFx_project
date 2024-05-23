@@ -66,7 +66,7 @@
     -fx-text-fill: white;
 }
 
-.song-artist, .song-album, .song-genre {
+.song-artist, .song-album, .song-genre, .song-release-year {
     -fx-font-size: 18px;
     -fx-text-fill: lightgray;
 }

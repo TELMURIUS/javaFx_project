@@ -21,6 +21,8 @@ public class SongDescriptionController {
     @FXML
     private Label songGenre;
 
+    @FXML
+    private Label songReleaseYear;
     private Song currentSong;
 
     public void initialize() {
@@ -33,6 +35,7 @@ public class SongDescriptionController {
         songArtist.setText(song.getArtist());
         songAlbum.setText(song.getAlbum());
         songGenre.setText(song.getGenre());
+        songReleaseYear.setText(song.getReleaseYear());
     }
 
     @FXML
